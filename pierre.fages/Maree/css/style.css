@@ -1,0 +1,54 @@
+@CHARSET "ISO-8859-1";
+
+.classDebug
+{
+	border: dashed 1px black;
+	padding: 0px; /* ecartement du text dans la boite */
+	width:100%; 
+	text-align:center;"	
+}
+
+
+.classUl
+{
+	width: 100%; 
+	height: 60px; 
+	list-style-type: none;        /* plus de puce */
+	list-style-position: inside;  /* met la puce dans la meme boite que le titre */
+	margin: 0px; 
+	padding: 0px; 
+	border: solid 3px silver;
+	text-align: center;
+}
+
+
+.classLi
+{
+	width: 10%; 
+	border: solid 1px red;
+	margin-left: 2px;
+	float: left;
+}
+
+.classLi a {
+	 width:5%;
+	 color:red;
+	 text-decoration:none;
+	 padding:5px;
+	 border: dotted 1px blue;
+	 display: inline;
+	 float: left;
+ }
+ 
+
+.classLi:HOVER
+{
+	text-decoration: underline;
+	color: white;
+	background-color: black;
+}
+
+img
+{
+	border: dashed 1px red;
+}

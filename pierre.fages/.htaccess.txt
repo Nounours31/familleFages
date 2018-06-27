@@ -1,0 +1,4 @@
+﻿# activation php5 (free.fr)
+<ifDefine Free>
+ PHP56 1
+</ifDefine>

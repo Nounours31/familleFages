@@ -1,0 +1,110 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 22, 2015, 9:07:55 AM
+    Author     : PFS
+*/
+
+font.W3CSchool
+{
+    text-decoration: underline;
+}
+
+hr.W3CSchool
+{
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+}
+body.W3CSchool
+{
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; 
+    color: rgb(51, 51, 51); 
+    font-size: 15px; 
+    font-style: normal; 
+}
+
+div.W3CSchool
+{
+    margin-left: 10%;
+}
+
+table.W3CSchool
+{
+    box-sizing: border-box; 
+    border-spacing: 0px; 
+    border-collapse: collapse; 
+    border-color: rgb(152, 191, 33);
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; 
+    width: 664px; 
+    color: rgb(51, 51, 51); 
+    font-size: 15px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: normal; 
+    letter-spacing: normal; 
+    line-height: 21.4285717010498px; 
+    orphans: auto; 
+    text-align: start; 
+    text-indent: 0px; 
+    text-transform: none; 
+    white-space: normal; 
+    widows: auto; 
+    word-spacing: 0px; 
+    -webkit-text-stroke-width: 0px; 
+    background-color: rgb(255, 255, 255);
+}
+
+tbody.W3CSchool
+{ 
+    box-sizing: border-box;
+}
+
+tr.W3CSchool 
+{
+    box-sizing: border-box;
+}
+tr.W3CSchool_alt
+{
+    box-sizing: border-box;
+    color: rgb(0, 0, 0); 
+    background-color: rgb(234, 242, 211);
+}
+
+th.W3CSchool 
+{ 
+    box-sizing: border-box; 
+    padding: 5px 7px 4px; 
+    text-align: left; 
+    font-size: 1.4em; 
+    border: 1px solid rgb(152, 191, 33); 
+    color: rgb(255, 255, 255); 
+    background-color: #0563C1;
+}
+
+td.W3CSchool 
+{ 
+   box-sizing: border-box; 
+   padding: 3px 7px 2px; 
+   border: 1px solid rgb(152, 191, 33);
+}
+
+#PremiereColone
+{
+    font-size: 1.4em;
+}
+
+td.W3CSchool_alt
+{
+    box-sizing: border-box; 
+    padding: 3px 7px 2px; 
+    border: 1px solid rgb(152, 191, 33); 
+    color: rgb(0, 0, 0); 
+    background-color: rgb(234, 242, 211);
+}

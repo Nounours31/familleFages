@@ -1,0 +1,1 @@
+<?php	class CONFIG {		public $DB_TYPE = 'mysql';		public $DB_SERVER = 'sql.free.fr';		public $DB_USER = 'pierre.fages';		public $DB_PASSWORD = 'frifri';		public $DB_NAME = 'pierre_fages';		public $DB_TABLE = 'fmt_table_films';		public $API_ACCESS_CODE = '';		public $API_VERSION = '1.0.0';		public $POSTERS_DIRECTORY = 'affiches';	}?>

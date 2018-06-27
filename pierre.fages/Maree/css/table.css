@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+
+table
+{
+	border-collapse:collapse;
+}
+
+
+th,td
+{
+	border: 1px solid;
+	border-color: green;
+	width: 6%;
+	height: 40px;
+	text-align: center;
+	padding: 2px;
+}
+
+th#J-1,td#J-1
+{
+	background-color: #CCFFB2;
+	color: 	#004200;
+}
+
+th#Jx1,td#Jx1
+{
+	background-color: #CCFFB2;
+	color: 	#004200;
+}
+
+th#Seuil,td#Seuil
+{
+	background-color: #FFCDFF;
+	color: 	#520052;
+}

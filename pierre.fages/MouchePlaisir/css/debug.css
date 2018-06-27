@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 27, 2015, 7:46:42 AM
+    Author     : PFS
+*/
+div.debug
+{
+    color: #520052;
+    border: dotted 1px crimson;
+    background-color: #CCFFB2;
+    font-size: 75%;
+}
+
+
+div #div_Frame_debug
+{
+    color: black;
+    border: solid 1px black;
+    font-size: 100%;
+}
+
