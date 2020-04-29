@@ -1,0 +1,17 @@
+{
+    "type": "putDBInfo",
+    "message": [ 
+        {
+            "nom": "toto",
+            "score": 1.1
+        },
+        {
+            "nom": "titi",
+            "score": 1.1
+        },
+        {
+            "nom": "tata",
+            "score": 1.1
+        }
+    ]
+}

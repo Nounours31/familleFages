@@ -1,0 +1,4 @@
+{
+    "type": "GetDBInfo",
+    "message": [ "toto", "titi" ]
+}

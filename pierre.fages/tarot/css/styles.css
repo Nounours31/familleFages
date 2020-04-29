@@ -1,0 +1,41 @@
+body {
+    margin-left: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+    text-shadow: 0 0 black;
+    box-sizing: border-box;
+}
+
+thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+td, th {
+    border: 1px solid #cbcbcb;    
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    /* padding: .5em 1em; */
+    padding: 1px 2px; 
+}
+
+td .Calcul {
+    padding: .5em 1em;
+}
+
+
