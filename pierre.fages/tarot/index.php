@@ -151,6 +151,9 @@
             <td style="background-color: honeydew;">
                 <button id="Submit" class="uk-button uk-button-primary">Go!</button>
             </td>
+            <td style="background-color: #EFE4E2;">
+                <button id="Oups" class="uk-button uk-button-secondary">Oups!</button>
+            </td>
         </tr>
     </table>
 

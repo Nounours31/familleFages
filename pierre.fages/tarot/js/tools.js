@@ -144,3 +144,18 @@ function miseAjourDesSelecteurDeJoueurs () {
         }
     });
 }
+
+
+// ---------------------------------------------------------------
+// mise a jour du nb joueur dans l'UI
+// ---------------------------------------------------------------
+function updateNbJoueur() {
+    let nbJoueur = 0;
+    $("#joueurs > td > select").each(function (index) {
+        let me = $(this)
+        let nomChoisi = me.find("option:selected").val();
+        if (nomChoisi != '-')
+            nbJoueur++;
+    });
+    $("#JoueursCheck").html(nbJoueur);
+}

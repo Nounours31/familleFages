@@ -1,7 +1,7 @@
 "use strict";
 
-var aJoueurs = ['-', 'Maman', 'Melanie', 'Pauline', 'Thibault', 'Papa'];
-var aAliasJoueur = ['-', "Mam's", "Nanie", 'Lili', 'Titi', "Pap's"];
+var aJoueurs = ['-', 'Maman', 'Marraine', 'Melanie', 'Pauline', 'Thibault', 'Papa'];
+var aAliasJoueur = ['-', "Mam's", 'Marraine', "Nanie", 'Lili', 'Titi', "Pap's"];
 
 var aPoignee = ['-', 'Simple', 'Double', 'Triple'];
 
@@ -74,6 +74,11 @@ function Go() {
     // call back du submit
     // -----------------------
     $("#Submit").click(onSubmit);
+
+    // -----------------------
+    // call back d'annulation du dernier score
+    // -----------------------
+    $("#Oups").click(onOups);
 }
 
 
@@ -191,7 +196,7 @@ function onNewScoreUpdateTable (event, handler) {
     let AllJoueurOK = false;
     let indexJoueurToFill = 0;
     while (!AllJoueurOK) {
-        jsonASresult.forEach(element => {
+        jsonASresult.forEach(function (element) {
             let nomJoueur = element.nom;
             let score = element.score;
             let indexJoueur = getIndexJoueur(nomJoueur);
@@ -215,14 +220,108 @@ function onNewScoreUpdateTable (event, handler) {
 
 
 // ---------------------------------------
+// Erreur, annulation du coup precedent
+// ---------------------------------------
+function onOups () {
+    // -----------------------------------------------
+    // recherche du coup precedent
+    // -----------------------------------------------
+    let aAllScoreLine = $("tr[name='LigneResultat']");
+    let nbScore = aAllScoreLine.length;
+    let resetScoreToZero = false;
+    if (nbScore < 2) {
+        // il n'y pas de score on se casse
+        alert ("Rien a annuler");
+        return false;
+    } 
+    else if (nbScore == 2) {
+        resetScoreToZero = true;
+    }
+    else {
+        resetScoreToZero = false;
+    }
+
+    // -----------------------------------------------
+    // j'annulle le ligne n-1 : c'est la ligne de calcul
+    // j'annulle le ligne n-2 : c'est les 2 dernieres lignes de calcul
+    // c'est aAllScoreLine.last()
+    // -----------------------------------------------
+    $("tr[name='LigneResultat']").last().remove();
+    $("tr[name='LigneResultat']").last().remove();
+    aAllScoreLine = $("tr[name='LigneResultat']")
+
+    // -----------------------------------------------
+    // je lis la nouvelle derniere ligne pour mettre a jour la DB
+    // -----------------------------------------------
+    // nb joueur
+    let nbJoueur = parseInt($("#JoueursCheck").text(), 10);
+    let jsonToUpdateDB = {
+        "type": "putDBInfo",
+        "message": []
+    }
+
+    if (resetScoreToZero) {
+        for (let i = 0; i < nbJoueur; i++) {
+            let nomjoueur = getJouerParIndex(i);
+            let localJson = {
+                "nom": nomjoueur,
+                "score": 0.0
+            }
+            jsonToUpdateDB.message.push(localJson); 
+        }
+    }
+    else {
+        aAllScoreLine = $("tr[name='LigneResultat']");
+        let deniereligne = aAllScoreLine.last();
+
+        deniereligne.find("td").each(function (index) {
+            let me = $(this);
+            if ((index > 0) && (index <= nbJoueur)) {
+                let nomjoueur = getJouerParIndex(index-1); // index des jouer commence a 0
+                let scoreJoueur = parseFloat (me.text());
+                let localJson = {
+                    "nom": nomjoueur,
+                    "score": scoreJoueur
+                }
+                jsonToUpdateDB.message.push(localJson); 
+            }
+        });
+    }
+
+    let jsonAsString = JSON.stringify(jsonToUpdateDB);
+    console.log("Json to update DB on Oups:" + jsonAsString);
+
+    $.ajax({
+        type: "POST",
+        url: "php/db.php",
+        async: false,
+        data: jsonAsString,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) { console.log("Ajax OK " + data);},
+        failure: function (errMsg) {
+            alert(errMsg);
+        }
+    });
+
+    $("tr[name='LigneResultat']").last().css("font-size", "100%");
+    $("tr[name='LigneResultat']").last().css("background-color", "palegreen");
+}
+
+// ---------------------------------------
 // on vient de changer de joueur
 // Est ce que ce jour existe deja ?
 // ---------------------------------------
 function OnJoueurChange(eventData, handler) {
     let sender=$(this);
     let nomChoisi = sender.find("option:selected").val();
-    if (nomChoisi == '-')
-        return;
+    if (nomChoisi == '-') {
+        updateNbJoueur();
+
+        // nettoyage des score de tous les joueur -- nouvelle partie
+        $("#ResetGame").trigger("click");
+        return
+    }
         
     // check pas deja un joueur du meme nom
     $("#joueurs > td > select").each(function (index) {
@@ -240,14 +339,7 @@ function OnJoueurChange(eventData, handler) {
     });
 
     // mise a jour du NB jour de la partie
-    let nbJoueur = 0;
-    $("#joueurs > td > select").each(function (index) {
-        let me = $(this)
-        let nomChoisi = me.find("option:selected").val();
-        if (nomChoisi != '-')
-            nbJoueur++;
-    });
-    $("#JoueursCheck").html(nbJoueur);
+    updateNbJoueur();
 
     // nettoyage des score de tous les joueur -- nouvelle partie
     $("#ResetGame").trigger("click");
@@ -641,4 +733,11 @@ function onSubmit(eventData, Handler) {
         let me = $(this);
         me.val(0)
     });
+
+    // reset annonce
+    $("#idAnnonce").val(0);
+
+    // reset point
+    $("#nbPointPreneur").val('');
+    $("#nbPointDefenseur").val('');
 }
